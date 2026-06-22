@@ -1,0 +1,30 @@
+# === Dependencies & build artifacts (01-profile/site is Next.js + pnpm) ===
+node_modules/
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+.turbo/
+
+# === Env & secrets ===
+.env
+.env.*
+!.env.example
+
+# === OS / editor ===
+.DS_Store
+Thumbs.db
+*.log
+
+# === Sensitive company documents (PUBLIC repo) ===
+# CLAUDE.md cảnh báo: KHÔNG commit tài liệu nhạy cảm lên git public.
+# Mặc định chặn các định dạng tài liệu gốc. Muốn commit 1 file cụ thể,
+# thêm ngoại lệ rõ ràng bên dưới (vd: !07-brand/logo.pdf).
+*.pdf
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.ppt
+*.pptx

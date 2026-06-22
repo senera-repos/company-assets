@@ -1,0 +1,317 @@
+/*
+ * Senera design-token preset (Tailwind v4, CSS-first — see GOTCHAS.md "Tailwind v4").
+ *
+ * Source of truth: docs/senera-brand-design-system.md (+ senera-color-tokens.css,
+ * senera-gradients.css). Concept "đầm sen": light = bình minh, dark = đêm trăng.
+ *
+ * Two layers:
+ *   1. RAW brand vars on :root (light) + prefers-dark + [data-theme] — the runtime
+ *      override surface (the Payload Theme global edits THESE; ARCHITECTURE §4).
+ *      Dark applies automatically via `prefers-color-scheme`; force with
+ *      `<html data-theme="dark">` / pin light with `data-theme="light"`.
+ *   2. `@theme inline` maps Tailwind utilities (bg-*, text-*, border-*) onto the raw vars,
+ *      so components reference ROLES and never hardcode hex.
+ *
+ * Colour roles (brand doc §2):
+ *   accent YELLOW = action ONLY → `primary` + `ring` (never decoration)
+ *   BRAND pink    = identity / "you are here" → `brand` / `brand-strong` / `brand-soft`
+ *   leaf TEAL     = secondary (illustration, data, eco) → `leaf*`
+ *   neutral mực-sen carries ~70% → `background` / `foreground` / `card` / `muted` / `border`
+ *   semantic success|warning|danger|info — kept distinct from brand.
+ */
+
+/* ── 1. Raw brand tokens — LIGHT ("đầm sen bình minh") ───────────────────────── */
+:root {
+  /* neutral / structure — kem ánh hồng */
+  --bg-base: #fbf2f3;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f6eaec;
+  --border: #efdcde;
+  --border-strong: #e4cace;
+  /* text — mực sen (cùng họ, khác độ sáng) */
+  --text-primary: #2e3f39;
+  --text-secondary: #515f58;
+  --text-tertiary: #7c8b84;
+  /* brand — hồng cánh sen (identity) */
+  --brand: #f2c4d4;
+  --brand-strong: #a23e5c;
+  --brand-soft: #fbe3e9;
+  /* logo mark — two-tone: central S (core) = hồng sen, outer crescents (petal) = a lighter pink
+     that still separates from the kem bg. LIGHT = logo-sheet colours; DARK = one luminous tone. */
+  --logo-core: #f28cb3;
+  --logo-petal: #f3b9cf;
+  /* secondary / leaf — xanh lá sen */
+  --secondary: #a9c7b7;
+  --secondary-strong: #2f6450;
+  --secondary-soft: #e3efe8;
+  /* accent — vàng khai phá (ACTION ONLY) */
+  --accent: #e9b949;
+  --accent-text: #4a3a12;
+  /* semantic — lệch khỏi brand để khỏi nhầm */
+  --success: #2a6e45;
+  --success-bg: #e2f0e6;
+  --warning: #8a4b12;
+  --warning-bg: #fbeedc;
+  --danger: #b3261e;
+  --danger-bg: #fbe6e5;
+  --info: #1a5c9e;
+  --info-bg: #e6f0fb;
+  /* gradients — bình minh (brand doc §7) */
+  --grad-ambient: linear-gradient(160deg, #fcefd6 0%, #fbe3e9 46%, #fbf2f3 100%);
+  --grad-glow: radial-gradient(
+    120% 115% at 84% -5%,
+    rgb(240 200 104 / 0.42) 0%,
+    rgb(247 220 227 / 0.12) 45%,
+    rgb(251 242 243 / 0) 72%
+  );
+  --grad-bloom: none; /* dark-only halo; declared here so the utility stays valid in light */
+  --grad-petal: linear-gradient(135deg, #f6cfdb 0%, #f2c4d4 100%);
+  --grad-accent: linear-gradient(180deg, #efc65e 0%, #e9b949 58%, #e0a92f 100%);
+  /* wordmark — the "Senera" logotype fill (brand §logo). LIGHT = solid hồng sen (lotus pink),
+     no gradient, to match the mark's core. The pastel-pink → trắng-gạo (rice white) gradient the
+     brand calls for only reads on the dark bg, so it lives in the dark token below. */
+  --grad-wordmark: linear-gradient(var(--logo-core), var(--logo-core));
+  /* Inline text highlight — gradient-clip a couple of key words in a hero/positioning statement.
+     LIGHT = same-hue rose, dark enough to read on the kem page (mid-rose → deep rose). */
+  --grad-highlight: linear-gradient(96deg, #c44d6d 0%, #9d3a57 58%, #7d2f47 100%);
+  /* Folk-motif "khắc gỗ" values (brand book: docs/senera-motif-kit). One brand colour per
+     motif — pink or green — at low watermark opacity; "một section một hoạ tiết". */
+  --motif-pink: #a23e5c;
+  --motif-green: #2f6450;
+  --motif-op-soft: 0.08; /* sen · vân mây watermarks */
+  --motif-op-wave: 0.1; /* sóng nước divider */
+  --motif-op-vien: 0.23; /* viền nụ sen — denser, its strokes are fine */
+  --motif-op-glow: 0.05; /* lacquer glow under a khảm inlay (LotusInlay) */
+}
+
+/* ── Raw brand tokens — DARK ("đầm sen đêm trăng") ───────────────────────────── */
+/* Auto: follow the OS unless light is pinned. Manual override mirrored below. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-base: #0e1b1a;
+    --bg-surface: #16302b;
+    --bg-subtle: #1d3a34;
+    --border: #294640;
+    --border-strong: #345650;
+    --text-primary: #ece9e0;
+    --text-secondary: #a7b3ad;
+    --text-tertiary: #6e7b75;
+    --brand: #e7a9bc;
+    --brand-strong: #f0bbcb;
+    --brand-soft: #3a2630;
+    /* logo mark — DARK collapses to one luminous tone (the central S reads via the slits). */
+    --logo-core: #f0bbcb;
+    --logo-petal: #f0bbcb;
+    --secondary: #7fc3a4;
+    --secondary-strong: #9ad3b8;
+    --secondary-soft: #1e3a30;
+    --accent: #f0c868;
+    --accent-text: #2a2410;
+    --success: #7fc79b;
+    --success-bg: #18302a;
+    --warning: #e6b45a;
+    --warning-bg: #322712;
+    --danger: #e89b97;
+    --danger-bg: #3a2120;
+    --info: #8fc0ee;
+    --info-bg: #13283d;
+    --grad-ambient: linear-gradient(180deg, #13241f 0%, #0e1b1a 56%, #0a1413 100%);
+    --grad-glow: radial-gradient(
+      120% 120% at 84% 2%,
+      rgb(240 200 104 / 0.24) 0%,
+      rgb(231 169 188 / 0.1) 36%,
+      rgb(14 27 26 / 0) 70%
+    );
+    --grad-bloom: radial-gradient(
+      70% 60% at 22% 78%,
+      rgb(231 169 188 / 0.2) 0%,
+      rgb(231 169 188 / 0.05) 45%,
+      rgb(14 27 26 / 0) 72%
+    );
+    --grad-petal: linear-gradient(135deg, #e7a9bc 0%, #d98ea6 100%);
+    --grad-accent: linear-gradient(180deg, #f4d27e 0%, #f0c868 58%, #e5b84f 100%);
+    /* DARK = the brand's signature wordmark: hồng pastel → trắng gạo (rice white), luminous
+       on the đêm-trăng ground. */
+    --grad-wordmark: linear-gradient(100deg, #f0bbcb 0%, #f2c4d4 38%, #f6efe0 100%);
+    /* DARK highlight = luminous hồng → trắng gạo so key words read on the đêm-trăng ground. */
+    --grad-highlight: linear-gradient(96deg, #f0bbcb 0%, #f2c4d4 40%, #f6efe0 100%);
+    /* Dark lifts motif tint + opacity a few % (brand book). */
+    --motif-pink: #e7a9bc;
+    --motif-green: #7fc3a4;
+    --motif-op-soft: 0.11;
+    --motif-op-wave: 0.14;
+    --motif-op-vien: 0.28;
+    --motif-op-glow: 0.08;
+  }
+}
+
+/* Manual dark: <html data-theme="dark"> (wins over prefers). */
+[data-theme="dark"] {
+  --bg-base: #0e1b1a;
+  --bg-surface: #16302b;
+  --bg-subtle: #1d3a34;
+  --border: #294640;
+  --border-strong: #345650;
+  --text-primary: #ece9e0;
+  --text-secondary: #a7b3ad;
+  --text-tertiary: #6e7b75;
+  --brand: #e7a9bc;
+  --brand-strong: #f0bbcb;
+  --brand-soft: #3a2630;
+  --logo-core: #f0bbcb;
+  --logo-petal: #f0bbcb;
+  --secondary: #7fc3a4;
+  --secondary-strong: #9ad3b8;
+  --secondary-soft: #1e3a30;
+  --accent: #f0c868;
+  --accent-text: #2a2410;
+  --success: #7fc79b;
+  --success-bg: #18302a;
+  --warning: #e6b45a;
+  --warning-bg: #322712;
+  --danger: #e89b97;
+  --danger-bg: #3a2120;
+  --info: #8fc0ee;
+  --info-bg: #13283d;
+  --grad-ambient: linear-gradient(180deg, #13241f 0%, #0e1b1a 56%, #0a1413 100%);
+  --grad-glow: radial-gradient(
+    120% 120% at 84% 2%,
+    rgb(240 200 104 / 0.24) 0%,
+    rgb(231 169 188 / 0.1) 36%,
+    rgb(14 27 26 / 0) 70%
+  );
+  --grad-bloom: radial-gradient(
+    70% 60% at 22% 78%,
+    rgb(231 169 188 / 0.2) 0%,
+    rgb(231 169 188 / 0.05) 45%,
+    rgb(14 27 26 / 0) 72%
+  );
+  --grad-petal: linear-gradient(135deg, #e7a9bc 0%, #d98ea6 100%);
+  --grad-accent: linear-gradient(180deg, #f4d27e 0%, #f0c868 58%, #e5b84f 100%);
+  --grad-wordmark: linear-gradient(100deg, #f0bbcb 0%, #f2c4d4 38%, #f6efe0 100%);
+  --grad-highlight: linear-gradient(96deg, #f0bbcb 0%, #f2c4d4 40%, #f6efe0 100%);
+  --motif-pink: #e7a9bc;
+  --motif-green: #7fc3a4;
+  --motif-op-soft: 0.11;
+  --motif-op-wave: 0.14;
+  --motif-op-vien: 0.28;
+  --motif-op-glow: 0.08;
+}
+
+/* ── 2. Tailwind utility mapping — `inline` so utilities reference the raw vars ── */
+@theme inline {
+  /* neutral surfaces & text */
+  --color-background: var(--bg-base);
+  --color-foreground: var(--text-primary);
+  --color-card: var(--bg-surface);
+  --color-card-foreground: var(--text-primary);
+  --color-popover: var(--bg-surface);
+  --color-popover-foreground: var(--text-primary);
+  --color-muted: var(--bg-subtle);
+  --color-muted-foreground: var(--text-secondary);
+  --color-faint: var(--text-tertiary); /* text-faint → tertiary / placeholder */
+
+  /* borders & focus */
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--border);
+  --color-ring: var(--accent); /* focus ring = action yellow (brand §5) */
+
+  /* primary = ACTION yellow; the lit gradient lives in the `.btn` / bg-accent-gradient */
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-text);
+
+  /* shadcn "secondary" = neutral surface button (brand "nút phụ trung tính") */
+  --color-secondary: var(--bg-surface);
+  --color-secondary-foreground: var(--text-primary);
+
+  /* shadcn "accent" = SUBTLE neutral hover bg — NOT the brand yellow */
+  --color-accent: var(--bg-subtle);
+  --color-accent-foreground: var(--text-primary);
+
+  /* brand pink — identity */
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+
+  /* logo mark two-tone — text-logo-core (the S) / text-logo-petal (outer crescents) */
+  --color-logo-core: var(--logo-core);
+  --color-logo-petal: var(--logo-petal);
+
+  /* leaf teal — secondary role */
+  --color-leaf: var(--secondary);
+  --color-leaf-strong: var(--secondary-strong);
+  --color-leaf-soft: var(--secondary-soft);
+
+  /* folk-motif tints (brand book) — one-colour watermarks, theme-aware */
+  --color-motif-pink: var(--motif-pink);
+  --color-motif-green: var(--motif-green);
+
+  /* destructive = danger pair (legible in both modes) */
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: var(--danger-bg);
+
+  /* semantic */
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+}
+
+/* ── 3. Static scales — radii, shadows, type ─────────────────────────────────── */
+@theme {
+  --radius: 0.625rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Soft, mực-sen-tinted shadows. Dark lifts surfaces by lightness, so these stay subtle. */
+  --shadow-2xs: 0 1px 2px 0 rgb(46 63 57 / 0.05);
+  --shadow-xs: 0 1px 3px 0 rgb(46 63 57 / 0.07), 0 1px 2px -1px rgb(46 63 57 / 0.05);
+  --shadow-sm: 0 2px 6px -1px rgb(46 63 57 / 0.08), 0 1px 2px -1px rgb(46 63 57 / 0.05);
+  --shadow-md: 0 6px 16px -3px rgb(46 63 57 / 0.1), 0 2px 6px -2px rgb(46 63 57 / 0.06);
+  --shadow-lg: 0 16px 36px -8px rgb(46 63 57 / 0.12), 0 4px 10px -4px rgb(46 63 57 / 0.07);
+  --shadow-xl: 0 28px 60px -12px rgb(46 63 57 / 0.16);
+
+  /* Real families injected by next/font in layout.tsx; fall back to system. Roles
+     (docs/senera-typography.md): display = Montserrat (headings ≥20px), sans = Be Vietnam Pro
+     (body/UI), mono = IBM Plex Mono (figures/code). Re-typeface here + in layout.tsx only. */
+  --font-sans:
+    var(--font-bvp, ui-sans-serif), system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-display:
+    var(--font-montserrat, var(--font-bvp, ui-sans-serif)), system-ui, -apple-system, sans-serif;
+  --font-mono:
+    var(--font-plex-mono, ui-monospace), "SF Mono", "Roboto Mono", Menlo, monospace;
+}
+
+/* ── 4. Gradient utilities (brand doc §7) — hero/marketing/CTA only ───────────── */
+@utility bg-ambient {
+  background-image: var(--grad-ambient);
+}
+@utility bg-glow {
+  background-image: var(--grad-glow);
+}
+@utility bg-bloom {
+  background-image: var(--grad-bloom);
+}
+@utility bg-petal {
+  background-image: var(--grad-petal);
+}
+@utility bg-accent-gradient {
+  background-image: var(--grad-accent);
+}
+/* Logotype fill — pair with `bg-clip-text text-transparent` on the "Senera" wordmark. */
+@utility bg-wordmark {
+  background-image: var(--grad-wordmark);
+}
+/* Inline highlight — pair with `bg-clip-text text-transparent` on a couple of key words in a
+   hero/positioning statement (restrained: words, not paragraphs). Same-hue rose, theme-aware. */
+@utility bg-highlight {
+  background-image: var(--grad-highlight);
+}

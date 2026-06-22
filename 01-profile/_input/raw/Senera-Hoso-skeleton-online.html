@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!--
+  ============================================================
+  SENERA · HỒ SƠ NĂNG LỰC — SKELETON v3 — BẢN ONLINE (font qua Google Fonts CDN, không cần thư mục fonts/)
+  Cấu trúc mới (mạch B2B: hook → vì-sao-tin sớm → bằng chứng → năng lực → minh chứng → kết):
+    1 Bìa · 2 Định vị & giá trị · 3 Công ty mới đội ngũ không mới (crux) ·
+    4 Đội ngũ · 5 Kinh nghiệm & thị trường · 6 Thương hiệu ·
+    7 [divider] Phần 1 Năng lực · 8 Dịch vụ · 9 Quy trình & hợp tác · 10 Công nghệ & cam kết ·
+    11 [divider] Phần 2 Minh chứng · 12 Case study · 13 Dự án · 14 Khách hàng & đối tác ·
+    15 Tổng quan pháp nhân · 16 Vì sao chọn + Liên hệ
+  • Style TỐI GIẢN grayscale — theming/màu/hoạ tiết làm phiên sau.
+  • In: mỗi <section class="page"> = đúng 1 trang A4 (210×297mm).
+    Ctrl/Cmd+P → A4, lề "None", bỏ "headers & footers".
+  • Mọi [trong ngoặc] = chỗ điền nội dung thật (không bịa số/tên).
+  ============================================================
+-->
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Senera — Hồ sơ năng lực (skeleton v3)</title>
+<style>
+/* ===== FONTS ===== */
+
+/* ===== PALETTE TRUNG TÍNH (đổi ở phiên theming) ===== */
+:root{
+  --page:#ffffff; --ink:#23232a; --ink-2:#55555f; --muted:#8c8c96;
+  --line:#d7d7de; --line-2:#e7e7ec; --fill:#f5f5f7; --bar:#dddde2; --dash:#bcbcc6;
+  --tag:#9a9aa3;
+}
+
+/* ===== PAGE / PRINT ===== */
+@page{ size:A4; margin:0; }
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ font-family:'Be Vietnam Pro',sans-serif; color:var(--ink); }
+.page{
+  position:relative; width:210mm; height:297mm; background:var(--page);
+  overflow:hidden; page-break-after:always; break-after:page;
+}
+.page:last-child{ page-break-after:auto; break-after:auto; }
+.frame{ position:absolute; inset:16mm 16mm 14mm; display:flex; flex-direction:column; }
+
+@media screen{
+  body{ background:#e9e9ec; padding:24px 0; }
+  .page{ margin:0 auto 22px; box-shadow:0 1px 12px rgba(0,0,0,.16); }
+}
+@media print{ body{ background:#fff; } .page{ margin:0; box-shadow:none; } }
+
+/* ===== TYPE ===== */
+.kick{ font:600 8.5pt 'Be Vietnam Pro'; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.h1{ font:700 30pt/1.08 'Montserrat'; letter-spacing:-.02em; color:var(--ink); }
+.h2{ font:700 22pt/1.12 'Montserrat'; letter-spacing:-.01em; color:var(--ink); }
+.h3{ font:600 12.5pt/1.25 'Montserrat'; color:var(--ink); }
+.sub{ font:400 11pt/1.55 'Be Vietnam Pro'; color:var(--ink-2); }
+.lead{ font:500 13pt/1.45 'Be Vietnam Pro'; color:var(--ink); }
+.note{ font:400 8.4pt/1.5 'Be Vietnam Pro'; color:var(--muted); }
+.mono{ font-family:'IBM Plex Mono'; }
+
+/* ===== PLACEHOLDER SYSTEM ===== */
+.slot{ border:1px solid var(--line); border-radius:8px; background:var(--fill); padding:11px 13px; }
+.slot .tag{ font:600 7.5pt 'Be Vietnam Pro'; letter-spacing:.13em; text-transform:uppercase; color:var(--tag); }
+.slot .desc{ font:400 9pt/1.45 'Be Vietnam Pro'; color:var(--ink-2); margin-top:4px; }
+.bars{ margin-top:9px; }
+.bar{ height:6px; border-radius:4px; background:var(--bar); margin-top:6px; }
+.w95{width:95%}.w85{width:85%}.w70{width:70%}.w55{width:55%}.w40{width:40%}
+
+.img{ border:1.5px dashed var(--dash); border-radius:8px; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center; padding:12px; gap:3px;
+  background:repeating-linear-gradient(45deg,#fafafb 0 11px,#f0f0f3 11px 22px); }
+.img .ic{ font:500 12pt 'IBM Plex Mono'; color:#a6a6af; letter-spacing:.05em; }
+.img .l{ font:600 9pt 'Be Vietnam Pro'; color:#6f6f79; }
+.img .s{ font:400 8pt/1.4 'Be Vietnam Pro'; color:#9a9aa2; max-width:80%; }
+
+.grid{ display:grid; gap:10px; }
+.g2{ grid-template-columns:1fr 1fr; }
+.g3{ grid-template-columns:1fr 1fr 1fr; }
+.g4{ grid-template-columns:1fr 1fr 1fr 1fr; }
+.row{ display:flex; gap:10px; }
+.col{ flex:1; }
+.fill{ flex:1; }
+
+.statbox{ border:1px solid var(--line); border-radius:8px; background:var(--fill); padding:10px 12px; }
+.statbox .n{ font:700 20pt 'Montserrat'; color:var(--ink); line-height:1; }
+.statbox .k{ font:400 8pt 'Be Vietnam Pro'; color:var(--muted); margin-top:5px; }
+.chiprow{ display:flex; flex-wrap:wrap; gap:6px; }
+.chip{ border:1px dashed var(--dash); border-radius:20px; padding:4px 11px; font:500 8pt 'Be Vietnam Pro'; color:var(--muted); }
+
+/* ô đối chiếu (crux) */
+.vs{ display:flex; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+.vs .side{ flex:1; padding:16px 18px; }
+.vs .side + .side{ border-left:1px solid var(--line); }
+.vs .lbl{ font:600 8pt 'Be Vietnam Pro'; letter-spacing:.13em; text-transform:uppercase; color:var(--tag); }
+.vs .big{ font:700 15pt/1.2 'Montserrat'; color:var(--ink); margin-top:7px; }
+.vs .mid{ display:flex; align-items:center; padding:0 4px; font:700 11pt 'Montserrat'; color:var(--muted); }
+
+.foot{ position:absolute; left:16mm; right:16mm; bottom:7mm; display:flex; justify-content:space-between;
+  align-items:center; font:500 7.2pt 'IBM Plex Mono'; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); border-top:1px solid var(--line-2); padding-top:6px; }
+
+.divider .frame{ justify-content:center; }
+.bignum{ font:700 64pt 'Montserrat'; color:var(--line); letter-spacing:-.02em; line-height:1; }
+</style>
+</head>
+<body>
+
+<!-- ===================== 1 · BÌA ===================== -->
+<section class="page">
+  <div class="frame" style="align-items:center; justify-content:center; text-align:center;">
+    <div class="img" style="width:32mm; height:32mm;">
+      <div class="ic">[ ]</div><div class="l">LOGO</div><div class="s">mark Senera (tạm)</div>
+    </div>
+    <div class="h1" style="margin-top:14mm; font-size:46pt; letter-spacing:.02em;">SENERA</div>
+    <div class="lead" style="margin-top:14px; max-width:135mm;">
+      [Dòng mô tả thẳng: Senera làm gì &amp; cho ai — vd “Công ty công nghệ: tư vấn, thiết kế, xây dựng &amp; vận hành sản phẩm số. AI-native.”]
+    </div>
+    <div class="sub" style="margin-top:14px;"><em>“Làm chủ cái số, bằng cái duyên.”</em></div>
+    <div class="kick" style="margin-top:9mm;">Hồ sơ năng lực · 2026</div>
+  </div>
+  <!-- Bìa: không footer / không số trang -->
+</section>
+
+<!-- ===================== 2 · ĐỊNH VỊ & GIÁ TRỊ ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Mở · Senera là ai</div>
+    <div class="h2" style="margin-top:8px;">Định vị &amp; giá trị</div>
+    <div class="lead" style="margin-top:10px; max-width:150mm;">
+      [Câu định vị 1 dòng, mạnh: Senera giúp <em>[ai]</em> làm được <em>[điều gì]</em> bằng <em>[cách nào]</em>.]
+    </div>
+
+    <div class="img" style="margin-top:16px; height:40mm;">
+      <div class="ic">[ Bài toán ] → [ Senera ] → [ Kết quả ]</div>
+      <div class="l">MINI-DIAGRAM chủ đạo</div>
+      <div class="s">3 ô nối mũi tên — nói đúng 1 mạch: nỗi đau DN → cách Senera giải → kết quả đo được</div>
+    </div>
+
+    <div class="h3" style="margin-top:18px;">Ba khác biệt</div>
+    <div class="grid g3 fill" style="margin-top:10px;">
+      <div class="slot"><div class="tag">Khác biệt 1</div><div class="desc">[Tiêu đề ngắn + 1 dòng vì sao quan trọng với khách]</div><div class="bars"><div class="bar w85"></div><div class="bar w55"></div></div></div>
+      <div class="slot"><div class="tag">Khác biệt 2</div><div class="desc">[Tiêu đề ngắn + 1 dòng vì sao quan trọng với khách]</div><div class="bars"><div class="bar w85"></div><div class="bar w55"></div></div></div>
+      <div class="slot"><div class="tag">Khác biệt 3</div><div class="desc">[Tiêu đề ngắn + 1 dòng vì sao quan trọng với khách]</div><div class="bars"><div class="bar w85"></div><div class="bar w55"></div></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Định vị &amp; giá trị</span><span>02 / 16</span></div>
+</section>
+
+<!-- ===================== 3 · CRUX: CTY MỚI, ĐỘI NGŨ KHÔNG MỚI ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Mở · Vì sao tin</div>
+    <div class="h2" style="margin-top:8px;">Công ty mới, đội ngũ không mới</div>
+    <div class="sub" style="margin-top:8px; max-width:150mm;">Câu hỏi đầu tiên của bạn về một công ty lập năm 2026 — và câu trả lời thẳng.</div>
+
+    <div class="vs" style="margin-top:16px;">
+      <div class="side">
+        <div class="lbl">Pháp nhân</div>
+        <div class="big">Công ty mới (2026)</div>
+        <div class="desc" style="margin-top:10px; color:var(--ink-2); font-size:9pt;">[1–2 dòng thành thật: vì sao chọn lập mới — gọn nhẹ, hiện đại, AI-native ngay từ đầu…]</div>
+      </div>
+      <div class="mid">≠</div>
+      <div class="side">
+        <div class="lbl">Con người</div>
+        <div class="big">Đội ngũ 10+ năm</div>
+        <div class="desc" style="margin-top:10px; color:var(--ink-2); font-size:9pt;">[1–2 dòng: từng làm sản phẩm cho thị trường Mỹ/Âu/Á/ĐNÁ ở các vị trí chủ chốt…]</div>
+      </div>
+    </div>
+
+    <div class="h3" style="margin-top:18px;">Vài con số nói thay</div>
+    <div class="row" style="margin-top:10px;">
+      <div class="statbox col"><div class="n">[NN]</div><div class="k">[năm KN trung bình]</div></div>
+      <div class="statbox col"><div class="n">[NN]</div><div class="k">[sản phẩm đã làm]</div></div>
+      <div class="statbox col"><div class="n">[NN]</div><div class="k">[người dùng phục vụ]</div></div>
+      <div class="statbox col"><div class="n">[NN]</div><div class="k">[thị trường]</div></div>
+    </div>
+
+    <div class="img fill" style="margin-top:12px;">
+      <div class="l">DẢI LOGO KHÁCH / NƠI ĐỘI NGŨ TỪNG LÀM</div>
+      <div class="s">3–6 logo, một sắc độ, đặt mờ — “nhử” bằng chứng (bản đầy đủ ở trang Khách hàng)</div>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Vì sao tin</span><span>03 / 16</span></div>
+</section>
+
+<!-- ===================== 4 · ĐỘI NGŨ ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Mở · Con người</div>
+    <div class="h2" style="margin-top:8px;">Đội ngũ</div>
+    <div class="sub" style="margin-top:8px; max-width:150mm;">Những người trực tiếp làm — và đã làm cho ai.</div>
+
+    <div class="grid g4" style="margin-top:16px;">
+      <div class="slot" style="text-align:center;"><div class="img" style="height:26mm;"><div class="l">ẢNH</div></div><div class="tag" style="margin-top:8px;">[Tên]</div><div class="desc">[Vai trò · số năm KN]</div></div>
+      <div class="slot" style="text-align:center;"><div class="img" style="height:26mm;"><div class="l">ẢNH</div></div><div class="tag" style="margin-top:8px;">[Tên]</div><div class="desc">[Vai trò · số năm KN]</div></div>
+      <div class="slot" style="text-align:center;"><div class="img" style="height:26mm;"><div class="l">ẢNH</div></div><div class="tag" style="margin-top:8px;">[Tên]</div><div class="desc">[Vai trò · số năm KN]</div></div>
+      <div class="slot" style="text-align:center;"><div class="img" style="height:26mm;"><div class="l">ẢNH</div></div><div class="tag" style="margin-top:8px;">[Tên]</div><div class="desc">[Vai trò · số năm KN]</div></div>
+    </div>
+
+    <div class="img" style="margin-top:14px; height:30mm;">
+      <div class="ic">▥</div><div class="l">THANH PHÂN BỔ NĂNG LỰC</div>
+      <div class="s">vd: kỹ thuật · thiết kế · sản phẩm · dữ liệu/AI — tỉ lệ &amp; số năm trung bình mỗi mảng</div>
+    </div>
+
+    <div class="slot fill" style="margin-top:12px; display:flex; flex-direction:column; justify-content:flex-end;">
+      <div class="tag">Ghi chú trung thực (quan trọng cho thầu)</div>
+      <div class="desc">Kinh nghiệm trước khi lập Senera ghi rõ: “do nhân sự chủ chốt thực hiện tại vị trí trước”.</div>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Đội ngũ</span><span>04 / 16</span></div>
+</section>
+
+<!-- ===================== 5 · KINH NGHIỆM & THỊ TRƯỜNG ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Mở · Bằng chứng</div>
+    <div class="h2" style="margin-top:8px;">Kinh nghiệm &amp; thị trường</div>
+    <div class="sub" style="margin-top:8px; max-width:150mm;">Đã làm sản phẩm cho thị trường nào, lĩnh vực nào.</div>
+
+    <div class="img" style="margin-top:16px; height:64mm;">
+      <div class="ic">◍</div><div class="l">BẢN ĐỒ THỊ TRƯỜNG: Mỹ · Âu · Á · ĐNÁ · VN</div>
+      <div class="s">đánh dấu các vùng đội ngũ từng phục vụ; có thể kèm 1 nhãn dự án/khu vực</div>
+    </div>
+
+    <div class="row" style="margin-top:14px;">
+      <div class="statbox col"><div class="n">[NN]</div><div class="k">[sản phẩm đã làm]</div></div>
+      <div class="statbox col"><div class="n">[NN]</div><div class="k">[người dùng]</div></div>
+      <div class="statbox col"><div class="n">[NN]</div><div class="k">[thị trường]</div></div>
+    </div>
+
+    <div class="h3" style="margin-top:16px;">Lĩnh vực đã làm</div>
+    <div class="chiprow fill" style="margin-top:8px; align-content:flex-start;">
+      <span class="chip">[lĩnh vực]</span><span class="chip">[lĩnh vực]</span><span class="chip">[lĩnh vực]</span>
+      <span class="chip">[lĩnh vực]</span><span class="chip">[lĩnh vực]</span><span class="chip">[+ …]</span>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Kinh nghiệm &amp; thị trường</span><span>05 / 16</span></div>
+</section>
+
+<!-- ===================== 6 · THƯƠNG HIỆU ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Mở · Bản sắc</div>
+    <div class="h2" style="margin-top:8px;">Thương hiệu</div>
+    <div class="sub" style="margin-top:8px; max-width:150mm;">Vì sao tên là Senera — và chúng tôi tin vào điều gì.</div>
+
+    <div class="row" style="margin-top:16px;">
+      <div class="col slot" style="flex:1.15;">
+        <div class="tag">Câu chuyện tên</div>
+        <div class="desc">Sen = bản sắc Việt (mộc mạc, bền bỉ) · Era = kỷ nguyên mới. 2–3 câu, nói thẳng, không ẩn dụ tối nghĩa.</div>
+        <div class="bars"><div class="bar w95"></div><div class="bar w95"></div><div class="bar w70"></div></div>
+      </div>
+      <div class="col img" style="flex:1; min-height:44mm;">
+        <div class="ic">[ Sen + Era ]</div><div class="l">SƠ ĐỒ ghép tên</div>
+        <div class="s">Sen ＋ Era → Senera</div>
+      </div>
+    </div>
+
+    <div class="h3" style="margin-top:18px;">Ba giá trị cốt lõi</div>
+    <div class="grid g3" style="margin-top:10px;">
+      <div class="slot"><div class="tag">Giá trị 1</div><div class="desc">[Tên + 1 dòng]</div><div class="bars"><div class="bar w85"></div></div></div>
+      <div class="slot"><div class="tag">Giá trị 2</div><div class="desc">[Tên + 1 dòng]</div><div class="bars"><div class="bar w85"></div></div></div>
+      <div class="slot"><div class="tag">Giá trị 3</div><div class="desc">[Tên + 1 dòng]</div><div class="bars"><div class="bar w85"></div></div></div>
+    </div>
+
+    <div class="slot fill" style="margin-top:14px; display:flex; flex-direction:column; justify-content:flex-end;">
+      <div class="tag">Dòng ký nhà sáng lập</div>
+      <div class="desc">[Một câu định hướng + tên người ký / chức danh]</div>
+      <div class="bars"><div class="bar w55"></div><div class="bar w40"></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Thương hiệu</span><span>06 / 16</span></div>
+</section>
+
+<!-- ===================== 7 · DIVIDER · PHẦN 1 NĂNG LỰC ===================== -->
+<section class="page divider">
+  <div class="frame">
+    <div class="bignum">01</div>
+    <div class="kick" style="margin-top:10px;">Phần 1</div>
+    <div class="h1" style="margin-top:6px;">Năng lực</div>
+    <div class="sub" style="margin-top:12px; max-width:125mm;">[1–2 câu dẫn: Senera làm được gì — dịch vụ, quy trình, công nghệ &amp; cam kết.]</div>
+    <div class="note" style="margin-top:10mm;">* Trang mở phần — phiên theming đổi sang nền tối “đêm trăng”.</div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Phần 1 · Năng lực</span><span>07 / 16</span></div>
+</section>
+
+<!-- ===================== 8 · DỊCH VỤ ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Phần 1 · Năng lực</div>
+    <div class="h2" style="margin-top:8px;">Dịch vụ</div>
+    <div class="sub" style="margin-top:8px;">Bốn nhóm dịch vụ, AI xuyên suốt từng nhóm.</div>
+
+    <div class="grid g2 fill" style="margin-top:16px;">
+      <div class="slot"><div class="tag">Nhóm 1 · Tư vấn</div><div class="desc">[Mô tả ngắn + 2–3 đầu việc tiêu biểu]</div><div class="bars"><div class="bar w95"></div><div class="bar w70"></div></div></div>
+      <div class="slot"><div class="tag">Nhóm 2 · Thiết kế</div><div class="desc">[Mô tả ngắn + 2–3 đầu việc tiêu biểu]</div><div class="bars"><div class="bar w95"></div><div class="bar w70"></div></div></div>
+      <div class="slot"><div class="tag">Nhóm 3 · Phát triển</div><div class="desc">[Mô tả ngắn + 2–3 đầu việc tiêu biểu]</div><div class="bars"><div class="bar w95"></div><div class="bar w70"></div></div></div>
+      <div class="slot"><div class="tag">Nhóm 4 · Vận hành</div><div class="desc">[Mô tả ngắn + 2–3 đầu việc tiêu biểu]</div><div class="bars"><div class="bar w95"></div><div class="bar w70"></div></div></div>
+    </div>
+
+    <div class="img" style="margin-top:12px; height:22mm;">
+      <div class="l">LỚP “AI XUYÊN SUỐT”</div><div class="s">dải ngang cắt qua 4 nhóm — 1 câu AI đóng vai trò gì ở mỗi nhóm</div>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Dịch vụ</span><span>08 / 16</span></div>
+</section>
+
+<!-- ===================== 9 · QUY TRÌNH & HỢP TÁC ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Phần 1 · Năng lực</div>
+    <div class="h2" style="margin-top:8px;">Quy trình &amp; mô hình hợp tác</div>
+    <div class="sub" style="margin-top:8px;">Một dự án chạy thế nào, và các cách hợp tác.</div>
+
+    <div class="img" style="margin-top:16px; height:40mm;">
+      <div class="ic">①→②→③→④→⑤</div><div class="l">FLOW 5 BƯỚC</div>
+      <div class="s">[Bước 1] → [Bước 2] → [Bước 3] → [Bước 4] → [Bước 5]</div>
+    </div>
+
+    <div class="h3" style="margin-top:18px;">Ba mô hình hợp tác</div>
+    <div class="grid g3 fill" style="margin-top:10px;">
+      <div class="slot"><div class="tag">Mô hình A</div><div class="desc">[Tên + khi nào hợp + cách tính phí]</div><div class="bars"><div class="bar w85"></div><div class="bar w55"></div></div></div>
+      <div class="slot"><div class="tag">Mô hình B</div><div class="desc">[Tên + khi nào hợp + cách tính phí]</div><div class="bars"><div class="bar w85"></div><div class="bar w55"></div></div></div>
+      <div class="slot"><div class="tag">Mô hình C</div><div class="desc">[Tên + khi nào hợp + cách tính phí]</div><div class="bars"><div class="bar w85"></div><div class="bar w55"></div></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Quy trình &amp; hợp tác</span><span>09 / 16</span></div>
+</section>
+
+<!-- ===================== 10 · CÔNG NGHỆ & CAM KẾT ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Phần 1 · Năng lực</div>
+    <div class="h2" style="margin-top:8px;">Công nghệ &amp; cam kết</div>
+    <div class="sub" style="margin-top:8px; max-width:150mm;">Công nghệ dùng — và cam kết để bạn yên tâm giao việc cho một công ty trẻ.</div>
+
+    <div class="h3" style="margin-top:14px;">Bộ công nghệ</div>
+    <div class="img" style="margin-top:10px; height:42mm;">
+      <div class="ic">▦</div><div class="l">LƯỚI STACK</div>
+      <div class="s">nhóm theo lớp: nền tảng · backend · frontend · dữ liệu/AI · hạ tầng/DevOps</div>
+    </div>
+
+    <div class="h3" style="margin-top:14px;">Cam kết &amp; giảm rủi ro</div>
+    <div class="grid g3 fill" style="margin-top:10px;">
+      <div class="slot"><div class="tag">Bảo mật</div><div class="desc">[Dữ liệu, phân quyền, sao lưu, NDA…]</div><div class="bars"><div class="bar w85"></div></div></div>
+      <div class="slot"><div class="tag">SLA &amp; hỗ trợ</div><div class="desc">[Phản hồi, uptime, bảo hành, kênh hỗ trợ]</div><div class="bars"><div class="bar w85"></div></div></div>
+      <div class="slot"><div class="tag">Bàn giao &amp; sở hữu</div><div class="desc">[Bàn giao mã nguồn/IP, tài liệu, chống phụ thuộc]</div><div class="bars"><div class="bar w85"></div></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Công nghệ &amp; cam kết</span><span>10 / 16</span></div>
+</section>
+
+<!-- ===================== 11 · DIVIDER · PHẦN 2 MINH CHỨNG ===================== -->
+<section class="page divider">
+  <div class="frame">
+    <div class="bignum">02</div>
+    <div class="kick" style="margin-top:10px;">Phần 2</div>
+    <div class="h1" style="margin-top:6px;">Minh chứng</div>
+    <div class="sub" style="margin-top:12px; max-width:125mm;">[1–2 câu dẫn: kết quả thật — case study, dự án, khách hàng.]</div>
+    <div class="note" style="margin-top:10mm;">* Trang mở phần — phiên theming đổi sang nền tối “đêm trăng”.</div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Phần 2 · Minh chứng</span><span>11 / 16</span></div>
+</section>
+
+<!-- ===================== 12 · CASE STUDY TIÊU ĐIỂM ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Phần 2 · Minh chứng</div>
+    <div class="h2" style="margin-top:8px;">Case study tiêu điểm</div>
+    <div class="sub" style="margin-top:8px; max-width:150mm;">[Tên dự án / khách hàng] — bối cảnh, cách làm, kết quả đo được.</div>
+
+    <div class="img" style="margin-top:16px; height:52mm;">
+      <div class="ic">Thách thức → Giải pháp → Kết quả</div>
+      <div class="l">SƠ ĐỒ CHỦ ĐẠO + ảnh sản phẩm</div>
+      <div class="s">một mạch kể duy nhất; có thể lồng 1 screenshot/mockup thật bên cạnh</div>
+    </div>
+
+    <div class="h3" style="margin-top:16px;">Kết quả đo được</div>
+    <div class="row fill" style="margin-top:10px; align-items:flex-start;">
+      <div class="statbox col"><div class="n">[NN]</div><div class="k">[chỉ số 1 · có nguồn]</div></div>
+      <div class="statbox col"><div class="n">[NN]</div><div class="k">[chỉ số 2 · có nguồn]</div></div>
+      <div class="statbox col"><div class="n">[NN]</div><div class="k">[chỉ số 3 · có nguồn]</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Case study</span><span>12 / 16</span></div>
+</section>
+
+<!-- ===================== 13 · DỰ ÁN TIÊU BIỂU ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Phần 2 · Minh chứng</div>
+    <div class="h2" style="margin-top:8px;">Dự án tiêu biểu</div>
+    <div class="sub" style="margin-top:8px;">Mỗi thẻ: ảnh/logo, tên dự án, 1 dòng vai trò, 1 số kết quả.</div>
+
+    <div class="grid g2 fill" style="margin-top:16px;">
+      <div class="slot" style="display:flex; gap:10px;">
+        <div class="img" style="width:26mm;"><div class="l">ẢNH</div></div>
+        <div style="flex:1;"><div class="tag">Dự án 1</div><div class="desc">[Tên · vai trò]</div><div class="bars"><div class="bar w70"></div></div><div class="note" style="margin-top:6px;">[mini số kết quả]</div></div>
+      </div>
+      <div class="slot" style="display:flex; gap:10px;">
+        <div class="img" style="width:26mm;"><div class="l">ẢNH</div></div>
+        <div style="flex:1;"><div class="tag">Dự án 2</div><div class="desc">[Tên · vai trò]</div><div class="bars"><div class="bar w70"></div></div><div class="note" style="margin-top:6px;">[mini số kết quả]</div></div>
+      </div>
+      <div class="slot" style="display:flex; gap:10px;">
+        <div class="img" style="width:26mm;"><div class="l">ẢNH</div></div>
+        <div style="flex:1;"><div class="tag">Dự án 3</div><div class="desc">[Tên · vai trò]</div><div class="bars"><div class="bar w70"></div></div><div class="note" style="margin-top:6px;">[mini số kết quả]</div></div>
+      </div>
+      <div class="slot" style="display:flex; gap:10px;">
+        <div class="img" style="width:26mm;"><div class="l">ẢNH</div></div>
+        <div style="flex:1;"><div class="tag">Dự án 4</div><div class="desc">[Tên · vai trò]</div><div class="bars"><div class="bar w70"></div></div><div class="note" style="margin-top:6px;">[mini số kết quả]</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Dự án tiêu biểu</span><span>13 / 16</span></div>
+</section>
+
+<!-- ===================== 14 · KHÁCH HÀNG & ĐỐI TÁC ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Phần 2 · Minh chứng</div>
+    <div class="h2" style="margin-top:8px;">Khách hàng &amp; đối tác</div>
+    <div class="sub" style="margin-top:8px;">Những bên đã tin tưởng + một trích dẫn.</div>
+
+    <div class="img fill" style="margin-top:16px;">
+      <div class="ic">▣ ▣ ▣ ▣</div><div class="l">LƯỚI LOGO</div>
+      <div class="s">khách hàng &amp; đối tác — xếp lưới đều, nền trắng, một sắc độ</div>
+    </div>
+
+    <div class="slot" style="margin-top:12px;">
+      <div class="tag">Trích dẫn</div>
+      <div class="desc">“[Câu nhận xét thật của khách]” — [Tên, chức danh, công ty]</div>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Khách hàng &amp; đối tác</span><span>14 / 16</span></div>
+</section>
+
+<!-- ===================== 15 · TỔNG QUAN PHÁP NHÂN ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Kết · Hồ sơ pháp nhân</div>
+    <div class="h2" style="margin-top:8px;">Tổng quan</div>
+    <div class="sub" style="margin-top:8px;">Thông tin pháp nhân — giữ cho hồ sơ thầu.</div>
+
+    <div class="slot fill" style="margin-top:16px;">
+      <div class="tag">Bảng thông tin pháp nhân</div>
+      <div style="margin-top:12px;">
+        <div class="row" style="border-bottom:1px solid var(--line-2); padding:9px 0;"><div style="width:48mm;" class="note">Tên pháp nhân</div><div class="bar w55" style="margin-top:5px;"></div></div>
+        <div class="row" style="border-bottom:1px solid var(--line-2); padding:9px 0;"><div style="width:48mm;" class="note">Mã số thuế</div><div class="bar w40" style="margin-top:5px;"></div></div>
+        <div class="row" style="border-bottom:1px solid var(--line-2); padding:9px 0;"><div style="width:48mm;" class="note">Năm thành lập</div><div class="bar w40" style="margin-top:5px;"></div></div>
+        <div class="row" style="border-bottom:1px solid var(--line-2); padding:9px 0;"><div style="width:48mm;" class="note">Địa chỉ</div><div class="bar w70" style="margin-top:5px;"></div></div>
+        <div class="row" style="border-bottom:1px solid var(--line-2); padding:9px 0;"><div style="width:48mm;" class="note">Người đại diện</div><div class="bar w55" style="margin-top:5px;"></div></div>
+        <div class="row" style="border-bottom:1px solid var(--line-2); padding:9px 0;"><div style="width:48mm;" class="note">Lĩnh vực ĐKKD</div><div class="bar w70" style="margin-top:5px;"></div></div>
+        <div class="row" style="padding:9px 0;"><div style="width:48mm;" class="note">Liên hệ chính thức</div><div class="bar w55" style="margin-top:5px;"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Tổng quan pháp nhân</span><span>15 / 16</span></div>
+</section>
+
+<!-- ===================== 16 · VÌ SAO CHỌN + LIÊN HỆ ===================== -->
+<section class="page">
+  <div class="frame">
+    <div class="kick">Kết · Chốt</div>
+    <div class="h2" style="margin-top:8px;">Vì sao chọn Senera</div>
+
+    <div class="grid g4" style="margin-top:14px;">
+      <div class="slot" style="text-align:center;"><div class="img" style="height:16mm;"><div class="ic">◇</div></div><div class="desc" style="margin-top:6px;">[Lý do 1 — recap]</div></div>
+      <div class="slot" style="text-align:center;"><div class="img" style="height:16mm;"><div class="ic">◇</div></div><div class="desc" style="margin-top:6px;">[Lý do 2 — recap]</div></div>
+      <div class="slot" style="text-align:center;"><div class="img" style="height:16mm;"><div class="ic">◇</div></div><div class="desc" style="margin-top:6px;">[Lý do 3 — recap]</div></div>
+      <div class="slot" style="text-align:center;"><div class="img" style="height:16mm;"><div class="ic">◇</div></div><div class="desc" style="margin-top:6px;">[Lý do 4 — recap]</div></div>
+    </div>
+
+    <div class="h3" style="margin-top:20px;">Liên hệ</div>
+    <div class="row fill" style="margin-top:10px;">
+      <div class="slot col" style="flex:1.4;">
+        <div class="tag">Khối liên hệ</div>
+        <div class="desc" style="margin-top:6px;">Website · Email · Điện thoại · Địa chỉ · (mạng xã hội nếu có)</div>
+        <div class="bars"><div class="bar w70"></div><div class="bar w55"></div><div class="bar w40"></div></div>
+        <div style="margin-top:16px; border:1.5px solid var(--ink); border-radius:8px; padding:10px 16px; display:inline-block;">
+          <span class="h3" style="font-size:11pt;">[ Nút CTA — vd “Đặt lịch trao đổi” ]</span>
+        </div>
+        <div class="note" style="margin-top:8px;">* Phiên theming: nút CTA dùng màu “vàng khai phá”.</div>
+      </div>
+      <div class="img col" style="max-width:40mm;"><div class="ic">▢</div><div class="l">QR</div><div class="s">link website / lịch hẹn</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>SENERA</span><span>Vì sao chọn · Liên hệ</span><span>16 / 16</span></div>
+</section>
+
+</body>
+</html>

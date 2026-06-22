@@ -1,0 +1,80 @@
+/*
+ * Senera — Hồ sơ năng lực. Global stylesheet, Tailwind v4 (CSS-first).
+ *   - Entry is `@import "tailwindcss";` (NOT the v3 @tailwind base/components/utilities trio).
+ *   - Design tokens come from the shared senera-theme preset — never hardcode hex here.
+ *   - This file owns the A4 PRINT sheet model that senera-theme does not provide.
+ */
+@import "tailwindcss";
+@import "../styles/tailwind-preset.css";
+
+/* Scan app + components + content for utility classes used in JSX. */
+@source "../**/*.{ts,tsx}";
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+@layer base {
+  body {
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    /* Roomy leading — Vietnamese diacritics need breathing room (typography §2). */
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+  }
+}
+
+/* ── A4 print-sheet model ────────────────────────────────────────────────────
+ * Each <PageFrame> renders exactly one A4 page (.page-sheet, 210×297mm).
+ * `print-color-adjust: exact` is MANDATORY so the dark openers/closers + the
+ * gradients actually print their colour — pair with Chrome "Background graphics".
+ */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+* {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page-sheet {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+}
+
+/* Screen — neutral canvas; pages stacked like physical sheets for quick F5 preview. */
+@media screen {
+  body {
+    background: #e9e9ec;
+    padding: 24px 0;
+  }
+  .page-sheet {
+    margin: 0 auto 22px;
+    box-shadow: 0 1px 12px rgb(0 0 0 / 0.16);
+  }
+}
+
+/* Print — bare sheets, one per physical page, no trailing blank. */
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+  .page-sheet {
+    margin: 0;
+    box-shadow: none;
+    break-after: page;
+  }
+  .page-sheet:last-child {
+    break-after: auto;
+  }
+}
