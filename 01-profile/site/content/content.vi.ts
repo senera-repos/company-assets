@@ -33,30 +33,35 @@ export const vi = {
   },
 
   // 3 · ĐỊNH VỊ — 4 khác biệt (định vị bằng tương phản, April Dunford) (trang riêng) ----
+  // Layout "hai lối đối chiếu": cột trái = lối thường gặp (mờ) → cột phải = cách Senera (thẻ khảm).
+  //   `common` = vế thường gặp (trái) · `title` + `desc` = vế Senera (phải).
+  // ⚠ Đối chiếu với CÁCH LÀM chung, KHÔNG nhắm đối thủ cụ thể (giữ khiêm nhường).
   positioning: {
     eyebrow: "Định vị",
     title: "Khác biệt của Senera",
     sub: "Bốn điều, mỗi điều đặt cạnh cách làm thường gặp — để thấy Senera chọn khác ở đâu.",
+    commonLabel: "Lối thường gặp",
+    seneraLabel: "Cách Senera",
     diffs: [
       {
+        common: "Ghép nhiều nhà thầu rồi tự điều phối",
         title: "Một đầu mối, lo trọn",
-        desc: "Một đội Senera tự làm từ nghiên cứu, thiết kế, dựng đến vận hành — không lắp ghép từ mảnh thuê ngoài.",
-        vs: "tự ghép và điều phối nhiều nhà cung cấp",
+        desc: "Một đội đi cùng từ nghiên cứu, thiết kế, dựng đến vận hành — một địa chỉ chịu trách nhiệm.",
       },
       {
+        common: "Phần mềm đóng gói, ép bạn theo khuôn",
         title: "May đo, không ép khuôn",
-        desc: "Sản phẩm bám đúng nghiệp vụ của bạn; gặp bài toán lạ thì tự mò cách giải, không chép mẫu.",
-        vs: "phần mềm đóng gói cứng nhắc",
+        desc: "Sản phẩm bám đúng cách bạn vận hành; bài toán lạ thì mò cách giải riêng, không chép mẫu.",
       },
       {
+        common: "Gắn mác 'AI' cho sang, sản phẩm vẫn vậy",
         title: "AI nhúng thật, không dán nhãn",
-        desc: "Hỏi–đáp tài liệu, tìm kiếm ngữ nghĩa, trích xuất dữ liệu, cảnh báo bất thường — AI làm việc thật trong sản phẩm.",
-        vs: "gắn mác 'AI' cho sang",
+        desc: "AI làm việc thật trong sản phẩm: đọc hiểu tài liệu, tìm theo ngữ nghĩa, cảnh báo bất thường.",
       },
       {
+        common: "Hứa hẹn lúc chào, buông tay giữa chừng",
         title: "Minh bạch, theo tới cùng",
         desc: "Quy trình rõ, tiến độ thấy được; nói thẳng cái làm được và cái chưa, theo tới khi sản phẩm sống thật.",
-        vs: "hứa hẹn rồi buông giữa chừng",
       },
     ],
   },
@@ -89,33 +94,64 @@ export const vi = {
   },
 
   // 4 · KINH NGHIỆM & THỊ TRƯỜNG ---------------------------------------------
+  // Hai khối infographic: (1) BỀ RỘNG lĩnh vực = dải tile icon · (2) THỊ TRƯỜNG = VN (nhà,
+  // thẻ khảm) + độ phủ quốc tế APAC/EU/US.
+  // Mô tả APAC/EU/US = ĐẶC TRƯNG thị trường công nghệ vùng đó + liên hệ lợi ích cho doanh nghiệp
+  //   Việt (KHÔNG bịa dự án/khách cụ thể). reachNote ghi rõ vốn liếng phần lớn từ vị trí trước.
   experience: {
     eyebrow: "Mở · Bằng chứng",
     title: "Kinh nghiệm & thị trường",
     lead: "Bề rộng đến từ nhiều năm làm thật.",
-    sub: "Đội ngũ đã đưa sản phẩm chạy thật ở nhiều lĩnh vực — tích luỹ qua những năm ở các tập đoàn lớn, nay tiếp tục ở Senera. Vốn nghề đó đi thẳng vào sản phẩm cho bạn.",
+    sub: "Đội ngũ đã đưa sản phẩm chạy thật ở nhiều lĩnh vực và nhiều thị trường — tích luỹ qua những năm ở các tập đoàn lớn, nay tiếp tục ở Senera. Vốn nghề đó đi thẳng vào sản phẩm cho bạn.",
     fieldsHeading: "Lĩnh vực đã làm",
-    fieldsNote: "Đây là bề rộng; chiều sâu nằm ở phần **Lĩnh vực chuyên sâu**.",
-    fieldChips: [
-      "Quản trị & vận hành doanh nghiệp",
-      "Thương mại điện tử & bán lẻ số",
-      "Ứng dụng tích hợp AI",
-      "Giáo dục",
-      "Sản xuất & cơ khí số hoá",
-    ],
-    marketsHeading: "Hai thị trường",
-    markets: [
+    // Mỗi lĩnh vực kèm 1 dòng NÓI ĐÚNG VIỆC làm (đã khử slop "tối ưu/nâng cao/tạo giá trị").
+    fields: [
       {
-        label: "Thị trường chính",
-        name: "Việt Nam",
-        desc: "Phần lớn sản phẩm, khách hàng và đội ngũ đều ở đây.",
-        proof: "Dữ liệu đặt tại Việt Nam · tuân thủ **NĐ 13**.",
+        label: "Quản trị & vận hành doanh nghiệp",
+        desc: "Số hoá quy trình và quản trị nội bộ cho doanh nghiệp.",
       },
       {
-        label: "Khách quốc tế",
-        name: "Hồng Kông",
-        desc: "Nhiều năm làm cho khách nước ngoài, quen chuẩn và nhịp làm việc quốc tế.",
-        proof: "Đội ngũ từng ở **FWD** — tập đoàn gốc Hồng Kông.",
+        label: "Thương mại điện tử & bán lẻ số",
+        desc: "Bán hàng đa kênh: gom đơn, kho và khách về một mối.",
+      },
+      {
+        label: "Ứng dụng tích hợp AI",
+        desc: "Đưa AI vào sản phẩm cho những việc thật của doanh nghiệp.",
+      },
+      {
+        label: "Giáo dục",
+        desc: "Nền tảng và công cụ số cho trường: tuyển sinh, dạy và học.",
+      },
+      {
+        label: "Sản xuất & cơ khí số hoá",
+        desc: "Số hoá sản xuất, theo dõi tới từng cấu kiện ngoài xưởng.",
+      },
+    ],
+    marketsHeading: "Thị trường đã phục vụ",
+    homeLabel: "Thị trường gốc",
+    home: {
+      name: "Việt Nam",
+      desc: "Phần lớn sản phẩm, khách hàng và đội ngũ đều ở đây.",
+      proofLabel: "Lợi thế tại chỗ",
+      proof: "Dữ liệu đặt tại Việt Nam; hỗ trợ trực tiếp, cùng múi giờ.",
+    },
+    reachLabel: "Đã làm cho khách ở",
+    reachNote: "Vốn liếng phần lớn từ những năm đội ngũ phục vụ khách nước ngoài ở vị trí trước — nay đem về cho doanh nghiệp Việt.",
+    reach: [
+      {
+        code: "APAC",
+        name: "Châu Á – Thái Bình Dương",
+        desc: "Tỉ mỉ, đúng hẹn, quy trình chặt — chuẩn để làm ăn với đối tác khu vực.",
+      },
+      {
+        code: "EU",
+        name: "Châu Âu",
+        desc: "Khắt khe về chất lượng, minh bạch và bảo vệ người dùng — hành trang để vươn ra toàn cầu.",
+      },
+      {
+        code: "US",
+        name: "Hoa Kỳ",
+        desc: "Nhịp nhanh, xoay quanh người dùng, dễ mở rộng — hợp doanh nghiệp muốn tăng tốc.",
       },
     ],
   },
@@ -132,31 +168,34 @@ export const vi = {
   services: {
     eyebrow: "Phần 1 · Năng lực",
     title: "Dịch vụ",
-    sub: "Bốn nhóm dịch vụ phủ trọn vòng đời sản phẩm, cùng một lớp AI xuyên suốt.",
+    lead: "Bốn nhóm dịch vụ phủ trọn vòng đời sản phẩm.",
+    sub: "Mỗi nhóm lo một chặng khác nhau của vòng đời sản phẩm.",
+    // Câu kết — nhịp xuyên suốt; cụm chốt in đậm.
+    flow: "Từ chiến lược đến tăng trưởng — **cùng một nhịp làm sản phẩm.**",
     groups: [
       {
         no: "01",
         title: "Tư vấn & chiến lược",
-        desc: "Chọn đúng bài toán đáng giải trước khi viết dòng mã đầu — gói về MVP đủ nhỏ để ra nhanh, đủ thật để học.",
-        items: "Làm rõ bài toán & người dùng · Khoanh vùng MVP · Lộ trình theo cột mốc",
+        desc: "Chọn đúng bài toán, ưu tiên đúng việc cần làm ngay từ đầu.",
+        chips: ["Định vị vấn đề", "MVP", "Lộ trình"],
       },
       {
         no: "02",
         title: "Thiết kế & thương hiệu",
-        desc: "Giao diện rõ ràng, nhận diện nhất quán — đặt trên design system để màn hình về sau vẫn đồng bộ.",
-        items: "Design system & token · Bản mẫu tương tác · Nhận diện cốt lõi (logo·màu·chữ)",
+        desc: "Giao diện rõ ràng, nhận diện nhất quán trên một design system.",
+        chips: ["UX/UI", "Nhận diện", "Bản mẫu"],
       },
       {
         no: "03",
         title: "Phát triển, hạ tầng & vận hành",
-        desc: "Web, app, API đa nền tảng dựng để chạy thật khi đông người dùng; kiểm thử, CI/CD, quan sát từ ngày đầu — và giám sát, bảo trì, hỗ trợ giữ sản phẩm sống khoẻ sau lên sóng.",
-        items: "Web/app/API đa nền tảng · CI/CD & quan sát · Giám sát, bảo trì & hỗ trợ",
+        desc: "Web, app, API và hạ tầng để sản phẩm chạy thật, ổn định.",
+        chips: ["Web/App/API", "Hạ tầng", "CI/CD"],
       },
       {
         no: "04",
         title: "Marketing & tăng trưởng",
-        desc: "Đưa sản phẩm đến đúng khách: web/app chuẩn SEO, tiếp cận đúng tệp, thu và quản lý lead — nối tiếp tự nhiên từ thương hiệu và sản phẩm đã dựng.",
-        items: "SEO & nội dung · Tiếp cận & quảng bá · Thu & quản lý lead",
+        desc: "Kết nối sản phẩm với tăng trưởng: thu hút, chuyển đổi, giữ chân.",
+        chips: ["SEO", "Tiếp cận", "Quản lý lead"],
       },
     ],
   },
@@ -165,36 +204,30 @@ export const vi = {
   ai: {
     eyebrow: "Phần 1 · Năng lực",
     heading: "AI xuyên suốt",
-    note: "Đặt AI đúng nơi tạo ra giá trị trong cả vòng đời sản phẩm — không phô trương.",
-      phases: [
-        {
-          title: "Thấu hiểu",
-          desc: "Phân tích insight doanh nghiệp, đối thủ, thị trường để sản phẩm bám đúng nhu cầu từ đầu.",
-        },
-        {
-          title: "Thiết kế",
-          desc: "Dựng nhanh nhiều phương án và nội dung mẫu, rút ngắn thời gian ra MVP.",
-        },
-        {
-          title: "Phát triển",
-          desc: "Tăng tốc phát triển; đưa AI vào sản phẩm: trợ lý hỏi–đáp tài liệu, tìm kiếm theo ngữ nghĩa, trích xuất dữ liệu.",
-        },
-        {
-          title: "Vận hành",
-          desc: "Trợ lý hỗ trợ 24/7 và cảnh báo bất thường sớm, giữ sản phẩm vận hành ổn định.",
-        },
-      ],
-      strengths: [
-        {
-          title: "Đa ngôn ngữ",
-          desc: "Sản phẩm phục vụ khách bằng chính ngôn ngữ của họ — Việt, Anh, Trung — sẵn cho thị trường Việt Nam và Hồng Kông.",
-        },
-        {
-          title: "Tự động hoá việc lặp",
-          desc: "Giao AI các thao tác thủ công lặp lại (nhập liệu, phân loại, soạn thảo), để người tập trung vào phần cần suy xét.",
-        },
-      ],
-    },
+    sub: "Senera ở trung tâm điều phối — kết nối nhiều năng lực AI và đặt chúng vào đúng việc, suốt vòng đời sản phẩm.",
+    hub: { name: "Senera AI", role: "AI điều phối" },
+    // Các mô hình AI Senera điều phối. ⚠️ TODO user chốt: danh sách này đúng chưa? có cấp logo SVG để
+    // thay chip chữ không? (đang để TÊN CHỮ, chưa nhúng logo bên thứ ba.)
+    models: ["Claude", "ChatGPT", "DeepSeek", "Gemini", "Grok"],
+    // Bốn pha vòng đời — caption ngắn (gọn trong node); vẫn giữ điểm cụ thể (nhúng AI · 24/7 · cảnh báo).
+    phases: [
+      { title: "Thấu hiểu", desc: "Hiểu đúng vấn đề, đúng người dùng." },
+      { title: "Thiết kế", desc: "Dựng nhanh nhiều phương án khả thi." },
+      { title: "Phát triển", desc: "Tăng tốc xây, nhúng AI vào sản phẩm." },
+      { title: "Vận hành", desc: "Trợ lý 24/7, cảnh báo bất thường sớm." },
+    ],
+    // ⚠️ Hai thế mạnh xuyên suốt — KHÔNG hiển thị trên sơ đồ điều phối; giữ lại chờ user quyết chỗ đặt.
+    strengths: [
+      {
+        title: "Đa ngôn ngữ",
+        desc: "Sản phẩm phục vụ khách bằng chính ngôn ngữ của họ — Việt, Anh, Trung — sẵn cho cả khách trong nước và quốc tế.",
+      },
+      {
+        title: "Tự động hoá việc lặp",
+        desc: "Giao AI các thao tác thủ công lặp lại (nhập liệu, phân loại, soạn thảo), để người tập trung vào phần cần suy xét.",
+      },
+    ],
+  },
 
   // 8 · MÔ HÌNH HỢP TÁC -------------------------------------------------------
   collaboration: {
@@ -276,7 +309,7 @@ export const vi = {
       {
         stage: "5 · Triển khai",
         standard: "Phát hành có kiểm soát, ít rủi ro; dữ liệu đặt tại Việt Nam.",
-        evaluation: "Phát hành tự động kèm bản xem trước, quay lui được; dữ liệu & sao lưu tại VN theo **Nghị định 13/2023**.",
+        evaluation: "Phát hành tự động kèm bản xem trước, quay lui được; dữ liệu & sao lưu đặt tại Việt Nam.",
       },
       {
         stage: "6 · Vận hành & bảo trì",
@@ -371,7 +404,7 @@ export const vi = {
       {
         kicker: "Sản phẩm của chính Senera",
         title: "Tuyển sinh nhanh",
-        desc: "Nền tảng tuyển sinh số đa trường: mỗi trường một cổng riêng; phụ huynh nộp & tra hồ sơ ngay trên điện thoại. Dữ liệu tại Việt Nam (NĐ 13).",
+        desc: "Nền tảng tuyển sinh số đa trường: mỗi trường một cổng riêng; phụ huynh nộp & tra hồ sơ ngay trên điện thoại. Dữ liệu đặt tại Việt Nam.",
         note: "**Mùa sau:** thanh toán phí · nhắn tin phụ huynh–trường · nhắc lịch qua Zalo.",
         shot: "cổng tuyển sinh (dán sau)",
       },
@@ -400,7 +433,7 @@ export const vi = {
     },
     eduHeading: "Giáo dục — các trường dùng Tuyển sinh nhanh",
     eduDesc:
-      "Nền tảng tuyển sinh số nhiều trường: mỗi trường một cổng riêng, phụ huynh nộp & tra hồ sơ ngay trên điện thoại. Dữ liệu đặt tại Việt Nam (NĐ 13).",
+      "Nền tảng tuyển sinh số nhiều trường: mỗi trường một cổng riêng, phụ huynh nộp & tra hồ sơ ngay trên điện thoại. Dữ liệu đặt tại Việt Nam.",
     schools: [
       { name: "[Trường A]", meta: "[Cấp học · địa bàn]" },
       { name: "[Trường B]", meta: "[Cấp học · địa bàn]" },
@@ -448,7 +481,7 @@ export const vi = {
       {
         no: "03",
         title: "Rủi ro thấy trước, nghiệm thu có cơ sở",
-        desc: "Quy trình 6 giai đoạn, mỗi bước có tiêu chí nghiệm thu rõ; dữ liệu đặt tại Việt Nam (NĐ 13), có nhật ký truy vết — chuẩn chúng tôi dùng cho sản phẩm của mình.",
+        desc: "Quy trình 6 giai đoạn, mỗi bước có tiêu chí nghiệm thu rõ; dữ liệu đặt tại Việt Nam, có nhật ký truy vết — chuẩn chúng tôi dùng cho sản phẩm của mình.",
       },
       {
         no: "04",

@@ -17,12 +17,20 @@ export {
   Sparkle as Sparkles, // AI · Thiết kế (sinh nhanh phương án)
   Cpu, // AI · Phát triển (nhúng AI vào sản phẩm)
   Lifebuoy as LifeBuoy, // AI · Vận hành (trợ lý hỗ trợ)
+  ArrowsClockwise, // AI · Vận hành (tối ưu liên tục — vòng lặp)
   Translate, // thế mạnh · đa ngôn ngữ
   Robot, // thế mạnh · tự động hoá việc lặp
 
-  // Kinh nghiệm · hai thị trường
-  MapPin, // thị trường chính · Việt Nam
-  GlobeHemisphereEast, // khách quốc tế · Hồng Kông (hướng Đông Á)
+  // Kinh nghiệm · lĩnh vực đã làm (dải tile bề rộng) — Ứng dụng AI dùng lại Sparkle ở trên
+  Buildings, // Quản trị & vận hành doanh nghiệp
+  Storefront, // Thương mại điện tử & bán lẻ số
+  GraduationCap, // Giáo dục
+  Factory, // Sản xuất & cơ khí số hoá
+
+  // Kinh nghiệm · thị trường (VN nhà + độ phủ APAC/EU/US)
+  MapPin, // thị trường gốc · Việt Nam
+  GlobeHemisphereEast, // độ phủ quốc tế
+  SealCheck, // dấu "quen chuẩn quốc tế" ở ghi chú độ phủ
 
   // Định vị · bốn khác biệt (thẻ AI dùng lại Cpu ở nhóm AI bên trên)
   Handshake, // một đầu mối, lo trọn

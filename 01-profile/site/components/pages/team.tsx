@@ -49,27 +49,28 @@ export function Team() {
 
               <div
                 className={cn(
-                  "relative flex flex-1 items-center overflow-hidden",
+                  "relative flex flex-1 items-stretch",
                   photoLeft ? "flex-row" : "flex-row-reverse",
                 )}
               >
-                {/* sen rải — sau nội dung */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={LOTUS[i % LOTUS.length].src}
-                  alt=""
-                  aria-hidden
-                  className="pointer-events-none absolute -z-10 select-none"
-                  style={LOTUS[i % LOTUS.length].style}
-                />
+                {/* sen rải — clip RIÊNG vào zone (zone không overflow-hidden để chân dung tràn được) */}
+                <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={LOTUS[i % LOTUS.length].src}
+                    alt=""
+                    className="absolute select-none"
+                    style={LOTUS[i % LOTUS.length].style}
+                  />
+                </div>
 
-                {/* chân dung tách nền */}
-                <div className="relative h-full w-[40mm] shrink-0">
+                {/* chân dung tách nền — full, KHÔNG crop (w-auto), tràn nhẹ xuống đáy */}
+                <div className="relative w-[46mm] shrink-0 self-stretch">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={m.photo}
                     alt={m.name}
-                    className="absolute inset-0 h-full w-full object-cover object-top"
+                    className="absolute bottom-[-3mm] left-1/2 h-[calc(100%+3mm)] w-auto max-w-none -translate-x-1/2 select-none object-bottom"
                   />
                 </div>
 

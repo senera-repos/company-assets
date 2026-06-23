@@ -54,13 +54,8 @@ export const PAGES: readonly PageMeta[] = [
   { id: "divider-1", label: "Phần 1 · Năng lực", theme: "dark", ambient: true },
   // Năng lực: per-card khảm (LotusInlay) IS the motif here → no page watermark.
   { id: "services", label: "Dịch vụ", theme: "light" },
-  {
-    id: "ai",
-    label: "AI xuyên suốt",
-    theme: "dark",
-    ambient: true,
-    watermark: { motif: "sen", tone: "pink", place: "bottom-right", size: 320 },
-  },
+  // AI = sơ đồ điều phối sáng (đầm sen), decor lotus/sóng nước đặt trong page → no ambient/watermark.
+  { id: "ai", label: "AI xuyên suốt", theme: "light" },
   { id: "collaboration", label: "Mô hình hợp tác", theme: "light" },
   { id: "quality", label: "Tiêu chuẩn chất lượng", theme: "light" },
   { id: "divider-2", label: "Phần 2 · Minh chứng", theme: "dark", ambient: true },
