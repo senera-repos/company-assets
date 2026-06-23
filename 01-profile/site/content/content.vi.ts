@@ -11,10 +11,11 @@ export const vi = {
   // 1 · BÌA -------------------------------------------------------------------
   cover: {
     wordmark: "SENERA",
-    descriptor:
-      "Đối tác công nghệ toàn diện — may đo sản phẩm số theo nhu cầu doanh nghiệp, đồng hành đến khi vận hành thật.",
     tagline: "Làm chủ cái số, bằng cái duyên.",
-    kicker: "Hồ sơ năng lực · 2026",
+    // Mô tả "công ty là ai" — cô đọng. KHÔNG dùng "đối tác công nghệ toàn diện" (đã loại: claim quét).
+    descriptor: "Công ty phần mềm may đo sản phẩm số cho doanh nghiệp.",
+    docTitle: "Hồ sơ năng lực",
+    year: "2026",
   },
 
   // 2 · ĐỊNH VỊ & BẢN SẮC ------------------------------------------------------
@@ -25,10 +26,10 @@ export const vi = {
     title: "Định vị & bản sắc",
     // Tên gói sẵn cách làm nghề: Sen (gốc Việt) + era (kỷ nguyên số) → tagline là trục.
     nameGloss: "Sen — gốc Việt, bền bỉ · era — kỷ nguyên số",
-    tagline: "Làm chủ cái số, bằng cái duyên.",
-    // Câu định vị — cái "làm": may đo + lo trọn + chạy thật.
+    // Tagline đã chuyển sang BÌA làm trục (tránh trùng) — trang này lấy CÂU ĐỊNH VỊ làm hero.
+    // ==…== = tô sáng gradient (Rich): nhấn "may đo" + "chạy thật".
     statement:
-      "Senera **may đo** sản phẩm số đúng nghiệp vụ của bạn — một đội dày nghề lo trọn, theo tới khi **chạy thật**.",
+      "Senera ==may đo== sản phẩm số đúng nghiệp vụ của bạn — một đội dày nghề lo trọn, theo tới khi ==chạy thật==.",
     target: "Hợp khi bạn có bài toán riêng mà giải pháp đóng gói không vừa.",
     diffHeading: "Khác biệt của Senera",
     diffs: [

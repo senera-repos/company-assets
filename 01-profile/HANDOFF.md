@@ -1,8 +1,9 @@
 # HANDOFF — Hồ sơ năng lực Senera
 > Phiên mới: đọc **file này** + `_input/raw/BRIEF.md` + `_input/raw/RESEARCH-nganh-chuyen-sau-2026.md` + mở working file `content/Senera-hoso-nang-luc.html`.
-> Cập nhật: 2026-06-22.
+> Cập nhật: 2026-06-23 (thêm mục **PHASE STYLE/UI** ngay dưới — giai đoạn hiện tại).
 
 ## TL;DR — đang ở đâu
+- 🆕🆕 **PHASE UI (2026-06-23):** đang nâng UI từng trang. ✅ **BÌA xong & user duyệt** ("đẹp rồi") — đêm-trăng, watermark **đầm sen `dam-sen.png` phủ cả bìa** (opacity 0.45), wordmark gradient, tagline làm trục. ✅ **Tách thông điệp bìa↔trang 2** (hướng A): tagline = trục BÌA, câu định vị = trục trang 2 (đã bỏ tagline khỏi trang 2, hết trùng). 🆕 **Thư viện decor sóng nước** `public/img/decor/wave/` (5 ảnh). ⏭ **TIẾP THEO = tối ưu UI TRANG 2 "Định vị & bản sắc"** (mới chỉ sửa content/hero, chưa craft visual). Chi tiết ở mục **PHASE STYLE/UI** dưới.
 - 🆕 **RENDER ĐÃ DỰNG (2026-06-22):** app Next.js chạy được ở **`01-profile/site/`** — `pnpm install && pnpm build` PASS sạch; 15 trang đã có theme/màu/logo (light + 4 trang dark mở/chốt). Chi tiết ở mục **PHASE RENDER** dưới + **`site/README.md`**. (Các bullet "content/grayscale" bên dưới là giai đoạn trước đó — vẫn đúng về *nội dung*, đã được port sang `site/content/content.vi.ts`.)
 - Đang dựng **content** cho `content/Senera-hoso-nang-luc.html` (15 trang, copy từ skeleton).
 - Giai đoạn: **FULL CONTENT trước** (grayscale). **CHƯA** theme, **CHƯA** màu. Thứ tự bắt buộc: content → theme → màu.
@@ -14,6 +15,28 @@
 - ⚠️ **3 ô ẢNH CHỤP MÀN HÌNH ở trang 13 còn TRỐNG** (Minh Cường · Tuyển sinh nhanh · Sumita) — chờ user chụp & gửi; rồi thay placeholder `.img` bằng `<img>` thật (đề xuất để ảnh ở `content/assets/`).
 - ⚠️ **Layout:** flex tự dãn lấp A4. Trang 13 = **hero Minh Cường (flex 1.3) + hàng dưới 2 cột [Tuyển sinh nhanh | Sumita]**; đã cắt chữ cho thoáng nhưng **CHƯA verify bằng mắt** — user đang xem preview cổng 8137.
 - ⚠️ Kiểm **smart-quote trong attr** + **Cyrillic** trước khi giao (mục QUY ƯỚC KỸ THUẬT).
+
+## PHASE STYLE/UI — nâng từng trang theo skill `senera-profile-ui` (2026-06-23)
+> Content đã đầy đủ → giờ **đi từng trang nâng UI/UX** theo skill **`01-profile/.claude/skills/senera-profile-ui`** (ĐỌC trước khi sửa bất kỳ trang nào). Quy tắc làm việc: **build 1 trang → user soi A4 (máy này KHÔNG render) → chỉnh → khoá → sang trang kế.** Build sau mỗi sửa: `cd site && pnpm build` (PASS sạch). ⚠️ Nhiều trang đang được **chỉnh song song** — bám `content.vi.ts`/`pages.ts` hiện tại, đừng ghi đè.
+
+- **Trang 1 — "Bìa" ✅ REDESIGN (2026-06-23, chờ user soi A4):** dark đêm-trăng. **Sen nở trong quầng** = lotus mark Rice White trên quầng `bg-petal` mờ (0.2/blur) · **wordmark gradient** 48pt (1 trong 3 chỗ gradient chữ) · **`BudRule`** ngăn tên–tagline · **tagline làm trục** (display 17pt) · **descriptor** 1 dòng muted · **dải chân**: `WaveDivider` tràn mép + meta mono `HỒ SƠ NĂNG LỰC · 2026` / `Công ty Cổ phần Senera · senera.vn`. Không vàng trên bìa. **Copy:** ĐÃ BỎ descriptor cũ "đối tác công nghệ toàn diện" (claim quét, đã loại). **CHIA TRỤC bìa↔trang 2 (user chốt hướng A 2026-06-23):** tagline = TRỤC CỦA BÌA (không lặp ở trang 2); câu định vị = trục của trang 2. Descriptor bìa = danh xưng gọn **"Công ty phần mềm may đo sản phẩm số cho doanh nghiệp."** (đã cắt đuôi "đi cùng tới khi chạy thật" vì trùng trang 2). `content.vi.ts` cover thêm field: `docTitle·year·legalName·website` (bỏ `kicker`).
+- **Trang 2 — "Định vị & bản sắc"** (đã GỘP *Định vị & giá trị* + *Thương hiệu*; trang "brand" cũ đã rút khỏi `pages.ts`). **HERO ĐỔI (2026-06-23, hướng A): trục = CÂU ĐỊNH VỊ** (display 17pt, tô sáng `==may đo==`·`==chạy thật==` qua marker) — **TAGLINE ĐÃ BỎ khỏi trang này** (về bìa, tránh trùng). Thứ tự: eyebrow "Senera là ai" → gloss tên (Sen+era) → câu định vị → dòng cho-ai. Bản sắc do gloss tên + 4 khác biệt gánh. (field `positioning.tagline` đã xoá khỏi `content.vi.ts`.) **4 thẻ tương phản** (April Dunford "định vị bằng tương phản"): mỗi thẻ icon duotone + khảm + tag *"thay vì …"*. (Chốt method ở các phiên trước; phần này có người chỉnh song song.)
+- **Trang 3 — "Đội ngũ quản lý" ✅ REDESIGN XONG (chờ user soi nốt):**
+  - Bố cục **3 zone** (1 người/zone) ngăn bằng **divider ngang NGẮN** (46mm, căn giữa); **không khung**, thoáng. Chân dung **tách nền** đặt **SO LE trái–phải** (Quân T · Huy P · Huyền T). Mỗi zone **rải 1 bông sen** ở góc/cỡ/độ-xoay khác nhau (config `LOTUS[]` đầu `team.tsx`); sen clip riêng trong lớp `overflow-hidden` để **zone không cắt người**.
+  - **Ảnh: bỏ `object-cover` (gây crop)** → người hiện đủ, `w-auto`, **tràn nhẹ 3mm xuống đáy**. Núm chỉnh: cột ảnh `w-[46mm]`, `bottom-[-3mm]`/`h-[calc(100%+3mm)]`.
+  - **Content:** title "Đội ngũ"→**"Đội ngũ quản lý"** (sửa cả footer `pages.ts`); **BỎ** lead "Đội nhỏ, nghề dày" + **BỎ** footnote "…tại vị trí trước…" (user thấy thừa); sub mới *"Không chạy theo số lượng mà chọn độ tinh: người trẻ tiềm năng được lớp đi trước — dày kinh nghiệm thực chiến — dìu dắt để vươn nhanh trong nghề."*
+  - **3 bio viết lại** (văn xuôi hồ sơ, bỏ mũi tên): **Quân** (đi đủ vai; CMC·FPT·FWD; AI&tự-động-hoá kim chỉ nam; *"học hỏi cách tiếp cận mới → trải nghiệm công nghệ tốt nhất"* — ⚠️ user chọn "tốt nhất" dù copy-editor gợi bản gọn hơn) · **Huy** (VMO→VinSmart Future; **tách AI riêng → nay tập trung R&D AI tạo sinh cho chuyển đổi số đa ngành**; đã bỏ câu "đặt chuẩn kỹ thuật") · **Huyền** (CMC·GMO·VinSmart; **nhóm trưởng**; *"giữ vai trò then chốt trong chiến lược đặt con người làm trung tâm"*).
+  - ⚠️ Petal/clip-path ("cánh sen xếp chồng") đã **THỬ rồi GỠ** (rủi ro che đầu khi build mù) — còn trong git nếu muốn lại.
+
+### Pipeline ẢNH (tái dùng cho các trang sau — chân dung, screenshot, logo)
+- **Chân dung đội ngũ:** gốc `site/public/img/team/<slug>.png` (1122×1402, 4:5, nền studio xám). Đã **xoá nền** bằng **rembg** (cục bộ, KHÔNG upload) model `u2net_human_seg` → **cắt sát bbox** → `<slug>-cut.png` (file ĐANG DÙNG). `content.vi.ts` trỏ `photo:"/img/team/<slug>-cut.png"`.
+- **Thư viện hoạ tiết sen:** `site/public/img/decor/lotus/` — **5 dáng**: `lotus-bloom · lotus-bud · lotus-side · lotus-tier · lotus-mandala` (line-art **hồng `#c54a6c` nền trong**, đã key trắng→trong + tô màu + crop bbox). Dùng làm **background-decor** rải các trang (mờ ~0.3–0.45, bleed góc). Cách dùng: inline `<img>` (xem `team.tsx` `LOTUS[]`).
+- 🆕 **Thư viện sóng nước (2026-06-23):** `site/public/img/decor/wave/` — **5 ảnh** từ user (key trắng→trong, tô `#c54a6c`, crop, cùng pipeline sen): `song-nuoc-bup` (dải sóng+nụ sen NGANG ~4.17:1) · `dong-chay` · `song-loan` · `la-sen` · `dam-sen` (texture vuông 1254²). Nguồn lệnh: venv `/tmp/wavevenv` (pillow+numpy); ảnh gốc ở image-cache. **BÌA giờ dùng `dam-sen.png` làm WATERMARK PHỦ CẢ BÌA** (absolute full-bleed `-left/-right/-top/-bottom` âm, `object-cover`, opacity 0.45, `-z-10` trên lớp ambient) — đã bỏ wave SVG cũ (hết lệch) **và** bỏ `BudRule`. (`song-nuoc-bup` còn để dành cho chân các trang khác.)
+- **Tooling (venv EPHEMERAL — `/tmp/bgvenv`, dựng lại nếu mất):** `python3 -m venv /tmp/bgvenv && /tmp/bgvenv/bin/pip install "rembg[cpu]" pillow numpy`. Xoá nền người: `rembg new_session("u2net_human_seg")` + `remove(img, post_process_mask=True)` rồi `.crop(getbbox())`. Sen: đọc RGB → `alpha=clip((246-min_channel)*5.5)` (trắng→trong) → tô `(197,74,108)` → `crop(getbbox())`.
+
+### Token/Block mới phiên này
+- **`--grad-highlight`** + `@utility bg-highlight` (`tailwind-preset.css`) + **Rich marker `==chữ==`** (`blocks/primitives.tsx`) = tô **gradient hồng-rose** cụm chữ hero (câu định vị). Tiết chế: chỉ vài cụm. (Trang 2 bản hiện đang để câu định vị **mộc/đậm** — marker còn đó, dùng khi cần.)
+- **`blocks/icons.ts`** thêm: `Handshake · Ruler · UsersThree` (định vị) · `MapPin · GlobeHemisphereEast` (kinh nghiệm).
 
 ## PHASE RENDER — Next.js + senera-theme (CHỐT 2026-06-22)
 > ✅ **ĐÃ DỰNG XONG S1–S5 (2026-06-22) — app ở `01-profile/site/`, `pnpm build` PASS sạch.**
