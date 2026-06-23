@@ -18,40 +18,45 @@ export const vi = {
     year: "2026",
   },
 
-  // 2 · ĐỊNH VỊ & BẢN SẮC ------------------------------------------------------
-  // Gộp "Định vị & giá trị" + "Thương hiệu" thành một trang nhận diện (2026-06-23):
-  // tên→tagline (gem) · câu định vị · 4 khác biệt (April Dunford "định vị bằng tương phản").
-  positioning: {
+  // 2 · BẢN SẮC — LỜI người sáng lập (trang riêng) ----------------------------
+  // Tách khỏi "Định vị" (2026-06-23, user chốt) cho đỡ dồn — trang này CHỈ là pull-quote founder.
+  // ⚠ Lời người thật — KHÔNG tự sửa ý; chỉnh chữ phải được founder duyệt.
+  identity: {
     eyebrow: "Mở · Senera là ai",
-    title: "Định vị & bản sắc",
-    // Tên gói sẵn cách làm nghề: Sen (gốc Việt) + era (kỷ nguyên số) → tagline là trục.
-    nameGloss: "Sen — gốc Việt, bền bỉ · era — kỷ nguyên số",
-    // Tagline đã chuyển sang BÌA làm trục (tránh trùng) — trang này lấy CÂU ĐỊNH VỊ làm hero.
-    // ==…== = tô sáng gradient (Rich): nhấn "may đo" + "chạy thật".
-    statement:
-      "Senera ==may đo== sản phẩm số đúng nghiệp vụ của bạn — một đội dày nghề lo trọn, theo tới khi ==chạy thật==.",
-    target: "Hợp khi bạn có bài toán riêng mà giải pháp đóng gói không vừa.",
-    diffHeading: "Khác biệt của Senera",
+    founderQuote: {
+      // Dòng lớn TỰ bắc cầu sen → cách làm (==…== = tô sáng gradient). Dòng nhỏ gom 4 giá trị.
+      lead: "Sen vươn từ bùn mà vẫn ==ngát hương== — tôi tin sản phẩm cũng vậy, đẹp lên từ cách làm ==tử tế== mỗi ngày.",
+      body: "Cả đội giữ một nếp: chịu khó học, dám thử, và luôn đặt mình vào chỗ khách hàng.",
+      author: "Trương Bá Quân",
+      role: "Nhà sáng lập",
+    },
+  },
+
+  // 3 · ĐỊNH VỊ — 4 khác biệt (định vị bằng tương phản, April Dunford) (trang riêng) ----
+  positioning: {
+    eyebrow: "Định vị",
+    title: "Khác biệt của Senera",
+    sub: "Bốn điều, mỗi điều đặt cạnh cách làm thường gặp — để thấy Senera chọn khác ở đâu.",
     diffs: [
       {
         title: "Một đầu mối, lo trọn",
         desc: "Một đội Senera tự làm từ nghiên cứu, thiết kế, dựng đến vận hành — không lắp ghép từ mảnh thuê ngoài.",
-        vs: "thay vì tự ghép và điều phối nhiều nhà cung cấp",
+        vs: "tự ghép và điều phối nhiều nhà cung cấp",
       },
       {
         title: "May đo, không ép khuôn",
         desc: "Sản phẩm bám đúng nghiệp vụ của bạn; gặp bài toán lạ thì tự mò cách giải, không chép mẫu.",
-        vs: "thay vì phần mềm đóng gói cứng nhắc",
+        vs: "phần mềm đóng gói cứng nhắc",
       },
       {
         title: "AI nhúng thật, không dán nhãn",
         desc: "Hỏi–đáp tài liệu, tìm kiếm ngữ nghĩa, trích xuất dữ liệu, cảnh báo bất thường — AI làm việc thật trong sản phẩm.",
-        vs: "thay vì gắn mác 'AI' cho sang",
+        vs: "gắn mác 'AI' cho sang",
       },
       {
         title: "Minh bạch, theo tới cùng",
         desc: "Quy trình rõ, tiến độ thấy được; nói thẳng cái làm được và cái chưa, theo tới khi sản phẩm sống thật.",
-        vs: "thay vì hứa hẹn rồi buông giữa chừng",
+        vs: "hứa hẹn rồi buông giữa chừng",
       },
     ],
   },

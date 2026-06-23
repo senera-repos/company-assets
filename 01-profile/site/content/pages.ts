@@ -14,6 +14,7 @@ import type { PageTheme, WatermarkConfig, WaveConfig } from "@/components/print/
  */
 export type PageId =
   | "cover"
+  | "identity"
   | "positioning"
   | "team"
   | "experience"
@@ -46,7 +47,8 @@ export interface PageMeta {
 
 export const PAGES: readonly PageMeta[] = [
   { id: "cover", label: "Bìa", theme: "dark", ambient: true, noFooter: true },
-  { id: "positioning", label: "Định vị & bản sắc", theme: "light" },
+  { id: "identity", label: "Bản sắc", theme: "light" },
+  { id: "positioning", label: "Định vị", theme: "light" },
   { id: "team", label: "Đội ngũ quản lý", theme: "light" },
   { id: "experience", label: "Kinh nghiệm & thị trường", theme: "light" },
   { id: "divider-1", label: "Phần 1 · Năng lực", theme: "dark", ambient: true },

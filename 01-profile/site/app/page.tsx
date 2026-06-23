@@ -4,6 +4,7 @@ import { PageFrame } from "@/components/print/page-frame";
 import { PAGES, TOTAL, type PageId } from "@/content/pages";
 
 import { Cover } from "@/components/pages/cover";
+import { Identity } from "@/components/pages/identity";
 import { Positioning } from "@/components/pages/positioning";
 import { Team } from "@/components/pages/team";
 import { Experience } from "@/components/pages/experience";
@@ -22,6 +23,7 @@ import { Why } from "@/components/pages/why";
 /* id → page body. Order + theme + footer come from content/pages.ts (single source of truth). */
 const PAGE_BODY: Record<PageId, () => ReactNode> = {
   cover: Cover,
+  identity: Identity,
   positioning: Positioning,
   team: Team,
   experience: Experience,
